@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/table_data_tables.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:01 GMT -->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>售后管理</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__INDEX__/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="__INDEX__/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <link href="__INDEX__/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <link href="__INDEX__/css/animate.min.css" rel="stylesheet">
+    <link href="__INDEX__/css/style.min862f.css?v=4.1" rel="stylesheet">
+    <link href="__INDEX__/css/style.min862f.css?v=4.1" rel="stylesheet">
+    <script src="__INDEX__/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__INDEX__/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="__INDEX__/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="__INDEX__/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="__INDEX__/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="__INDEX__/js/content.min.js?v=1.0.0"></script>
+    <script src="__INDEX__/js/plugins/layer/laydate/laydate.js"></script>
+    <script src="__INDEX__/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="__INDEX__/layui2/css/layui.css">
+    <script type="text/javascript" src="__INDEX__/layui2/layui.js"></script>
+</head>
+<style type="text/css">
+    .col-sm-2 {
+        width: 6.66666667%;
+    }
+    .input-group .form-control {
+        position: relative;
+        z-index: 2;
+        float: right;
+        width: 25%;
+        margin-bottom: 0;
+
+    }
+    .layui-elem-field legend {
+        margin-left: -9px;
+        padding: 0 10px;
+        font-size: 20px;
+        font-weight: 300;
+    }
+    .layui-btn-primary{
+        margin-left: -105px;
+    }
+    .layui-upload-img { width: 90px; height: 90px; margin: 0; }
+    .pic-more { width:100%; left; margin: 10px 0px 0px 0px;}
+    .pic-more li { width:90px; float: left; margin-right: 5px;}
+    .pic-more li .layui-input { display: initial; }
+    .pic-more li a { position: absolute; top: 0; display: block; }
+    .pic-more li a i { font-size: 24px; background-color: #008800; }
+    #slide-pc-priview .item_img img{ width: 90px; height: 90px;}
+    #slide-pc-priview li{position: relative;}
+    #slide-pc-priview li .operate{ color: #000; display: none;}
+    #slide-pc-priview li .toleft{ position: absolute;top: 40px; left: 1px; cursor:pointer;}
+    #slide-pc-priview li .toright{ position: absolute;top: 40px; right: 1px;cursor:pointer;}
+    #slide-pc-priview li .close{position: absolute;top: 5px; right: 5px;cursor:pointer;}
+    #slide-pc-priview li:hover .operate{ display: block;}
+    table{
+        text-align: center;
+    }
+    ul{
+        list-style: none;
+    }
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    商品信息
+                </div>
+                <div class="ibox-content">
+                   <!-- <a data-toggle="modal" class="btn btn-primary" onclick="add_goodsinfo()"  href="form_basic.html#modal-form">添加商品信息</a>
+                    <a data-toggle="modal" class="btn btn-w-m btn-danger" id="getAllSelectedId"  href="form_basic.html#modal-form">批量昨日爆款</a>
+                    <a data-toggle="modal" class="btn btn-w-m btn-danger" id="getAllSelectedId2"  href="form_basic.html#modal-form">批量今日主推</a>
+-->
+                    <div class="input-group" style=" width: 100%;">
+                        <select  style="width: 19%;margin-left: 16px"  id="order_type" name="order_type">
+                            <option value="" >全部</option>
+                            <option value="0" >未发货退款订单</option>
+                            <option value="1" >已发货仅退款订单</option>
+                            <option value="2" >已发货退货退款订单</option>
+                        </select>
+                        <select  style="width: 10%;margin-left: 16px"  id="order_status" name="order_status" >
+                            <!--<option value="" >===退款类型===</option>-->
+                            <option value="" >全部</option>
+                            <option value="0" >退款中</option>
+                            <option value="2" >已退款</option>
+                            <option value="1" >拒绝退款</option>
+
+                        </select>
+                        <select  style="width: 13%;margin-left: 16px"  id="time_type" name="time_type">
+                            <option value="" >全部</option>
+                            <option value="0" >订单申请时间</option>
+                            <option value="1" >订单下单时间</option>
+                            <!--<option value="2" >已发货退货退款订单</option>-->
+                        </select>
+                        <div class="layui-input-inline" style="margin-left:16px;">
+                            <input type="text" class="layui-input" style="height: 23px" id="test5" placeholder="yyyy-MM-dd HH:mm:ss">
+                        </div>
+                        <input type="text" style="width: 25%;margin-left: 16px" id="nameorder"  placeholder="商品名称/退货单号">
+
+                            <button type="button" onclick="search()" style=" margin-left: 14px; " class="btn btn-sm btn-primary">
+                                搜索
+                            </button>
+
+                    </div>
+                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                        <tr style="text-align: center;">
+                            <th style="text-align: center;"><input type="checkbox"  id = "allAndNotAll"/></th>
+                            <th style="text-align: center;">商品图片</th>
+                            <th style="text-align: center;">商品信息</th>
+                            <th style="text-align: center;">订单退货单编号</th>
+                            <th style="text-align: center;">实际支付金额</th>
+                            <th style="text-align: center;">退款状态</th>
+                            <th style="text-align: center;">退款类型</th>
+                            <th style="text-align: center;">退货人信息</th>
+                            <th style="text-align: center;">信息</th>
+                            <th style="text-align: center;">操作</th>
+                        </tr>
+                        </thead>
+                        {foreach name="data" item='v'}
+                        <tbody>
+                        <tr class="gradeX">
+                            <td> {if condition="($v['refund_status'] == 1) OR ($v['refund_status'] == 2) OR ($v['refund_status'] == 4) "/}
+                                <input type="checkbox" name = "item" id = "{$v.refund_id}" /></td>
+                                {else /}  <input type="checkbox" name = "items" id = "{$v.refund_id}" /></td></a>
+                                {/if}
+                            <td><img src="{$v.goods_image}" width="80px"></td>
+                            <td><ul>
+                                <li>{$v.goods_name}</li>
+                                <li>规格:{$v.goods_name}</li>
+                                <li>数量：{$v.goods_count}</li>
+                                <li>单价：{$v.goods_price}</li>
+                            </ul></td>
+                            <td><ul>
+                                <li>退货单编号:{$v.refund_num}</li>
+                                <li>订单编号:{$v.sub_order_num}</li>
+                            </ul></td>
+                            <td>￥{$v.real_pay}</td>
+                            <td>{eq name='v.refund_status' value="0"}退款中{/eq}
+                                {eq name='v.refund_status' value="1"}拒绝退款{/eq}
+                                {eq name='v.refund_status' value="2"}退款成功{/eq}
+                                {eq name='v.refund_status' value="3"}退款中{/eq}
+                                {eq name='v.refund_status' value="4"}拒绝退货{/eq}
+                            </td>
+                            <td>{eq name='v.type' value="0"}未发货退款订单{/eq}
+                                {eq name='v.type' value="1"}已发货仅退款订单{/eq}
+                                {eq name='v.type' value="2"}退货退款订单{/eq}</td>
+                            <td><ul>
+                                <li>{$v.telephone}</li>
+                                <li>{$v.address}</li>
+                            </ul></td>
+                            <td>
+                                <a href="{:url('refunds/detail')}?refund_id={$v.refund_id}">详情</a>
+                            </td>
+                            <td class="center">
+                                <!--<a class="btn btn-primary btn-rounded" id="status" style=" border-radius: 4px"  onclick="update_slidestatus(this)" data-id="" data-status="" data-nums="">-->
+
+                                <!--</a>-->
+                                {if condition="($v['refund_status'] == 0) AND ($v['type'] < 2) "}
+                                <a class="btn btn-primary btn-rounded" style=" border-radius: 4px"   onclick="update_slidestatus(this)" data-status="2" data-id="{$v.refund_id}">同意退款</a>
+                                <a class="btn btn-primary btn-rounded" style=" border-radius: 4px"  onclick="update_sliderefuse(this)" data-status="1" data-id="{$v.refund_id}">拒绝退款</a>
+                                {elseif condition="($v['refund_status'] == 0) AND ($v['type'] == 2) "/}
+                                <a class="btn btn-primary btn-rounded" style=" border-radius: 4px"   onclick="update_slidestatus(this)" data-status="3" data-id="{$v.refund_id}">同意退货</a>
+                                <a class="btn btn-primary btn-rounded" style=" border-radius: 4px"  onclick="update_sliderefuse(this)" data-status="4" data-id="{$v.refund_id}">拒绝退货</a>
+                                {elseif condition="($v['refund_status'] == 3) "/}
+                                <a class="btn btn-primary btn-rounded" style=" border-radius: 4px"   onclick="check_order(this)" data-id="{$v.refund_id}">核对订单</a>
+                                <a class="btn btn-primary btn-rounded" style=" border-radius: 4px"  onclick="update_sliderefuse(this)" data-status="1" data-id="{$v.refund_id}">拒绝退款</a>
+                                {elseif condition="($v['refund_status'] == 1) OR ($v['refund_status'] == 4) "/}
+                                <a class="btn btn-primary btn-rounded" style=" border-radius: 4px"    >已拒绝</a>
+                                {else /}  <a class="btn btn-primary btn-rounded" style=" border-radius: 4px"    >已完成</a>
+                                {/if}
+                          <!---->
+                                <!--<a class="btn btn-primary btn-rounded" style=" border-radius: 4px"   onclick="update_slidestatus(this)" data-id="{$v.refund_id}">同意退货</a>-->
+                                <!--<a class="btn btn-primary btn-rounded" style=" border-radius: 4px"  onclick="update_slidedel(this)" data-id="">拒绝退货</a>-->
+                            </td>
+                        </tr>
+                        </tbody>
+                        {/foreach}
+
+                    </table>
+                    <a data-toggle="modal" class="btn btn-w-m btn-danger" id="getAllSelectedId"  href="form_basic.html#modal-form">批量同意</a>
+                    <a data-toggle="modal" class="btn btn-w-m btn-danger" id="getAllSelectedId2"  href="form_basic.html#modal-form">批量拒绝</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+   //核对订单
+    function check_order(check_order){
+        var id = $(check_order).attr('data-id');
+        layer.ready(function(){
+            layer.open({
+                type: 2,
+                title: '核对订单',
+                maxmin: true,
+                area: ['50%', '40%'],
+                content: '{:url('checkorder')}?refunds_id='+id,
+                cancel: function(){ //刷新网页
+                    //重新加载表格数据
+                    self.location='{:url('index')}';
+                }
+            });
+        });
+    }
+    //订单拒绝
+   function update_sliderefuse(update_sliderefuse) {
+       var id = $(update_sliderefuse).attr('data-id');
+       var status = $(update_slidestatus).attr('data-status');
+       layer.ready(function(){
+           layer.open({
+               type: 2,
+               title: '拒绝原因',
+               maxmin: true,
+               area: ['50%', '40%'],
+               content: '{:url('refuse')}?refunds_id='+id+'status='+status,
+               cancel: function(){ //刷新网页
+                   //重新加载表格数据
+                   self.location='{:url('index')}';
+               }
+           });
+       });
+   }
+    //关键字搜索
+    function search(){
+        var order_type = $("#order_type option:selected").val();
+        var order_status = $("#order_status option:selected").val();
+        var time_type = $("#time_type option:selected").val();
+        var time = $("#test5").val();
+        var nameorder = $("#nameorder").val();
+        window.location.href = "{:url('refunds/index')}?order_type="+order_type+"&order_status="+order_status+"&time="+time+"&nameorder="+nameorder+"&time_type="+time_type;
+    }
+
+    //同意退款 退货
+    function update_slidestatus(update_slidestatus){
+        var id = $(update_slidestatus).attr('data-id');
+        var status = $(update_slidestatus).attr('data-status');
+        var str = $(update_slidestatus).text();
+//        alert(str);
+        layer.msg("是否"+str, {
+            time: 0 //不自动关闭
+            ,btn: ['确认', '取消']
+            ,yes: function(index){
+                layer.close(index);
+                $.ajax({
+                    url: '{:url("refunds/upstatus")}',
+                    data: {
+                        id:id,status:status
+                    },
+                    dataType: "json",
+                    type: "post",
+                    success: function(data) {
+                        console.log(data);
+                        if(data.code==1){
+                            layer.msg(data.msg,{icon: 2, shift: 6},function () {
+                                window.location.href = "{:url('refunds/index')}";
+                            });
+
+                        }else{
+                            layer.msg('操作失败');
+                        }
+                    }
+                });
+            }
+        });
+
+    }
+
+    //实现全选与反选
+    $("#allAndNotAll").change(function() {
+
+        if ($(this).prop("checked")){
+            $("input[name='items']:checkbox").each(function(index,item){
+                $(item).prop("checked", true);
+            });
+        } else {
+            $("input[name='items']:checkbox").each(function(index,item) {
+                $(item).removeAttr("checked");
+            });
+        }
+    });
+
+    //批量同意
+    var ids=[];
+    var status=[];
+    $('#getAllSelectedId').click(function(){
+        $("input[name='items']:checked").each(function(){
+            ids.push($(this).attr("id"));
+//            status.push($(this).parent().parent().find("a[]").attr('data-status'));
+        });
+        console.log("id长度"+ids.length);
+//        console.log("状态"+status);
+        if(ids.length == 0){
+            layer.msg('请选择订单', {icon: 2, shift: 6});
+            return;
+        }
+        var str=$(this).text();
+        layer.msg("是否"+str, {
+            time: 0 //不自动关闭
+            ,btn: ['确认', '取消']
+            ,yes: function(index){
+                layer.close(index);
+                $.ajax({
+                    url: "{:url('refunds/allstatus')}",
+                    type: "post",
+                    data: {
+                        ids:ids,type:1
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        if (data.code === 1) {
+                            layer.msg(data.msg, {icon: 1, shift: 6});
+                            window.location.href = "{:url('refunds/index')}"
+                        } else {
+                            layer.msg(data.msg, {icon: 2, shift: 6});
+                        }
+                    },
+                    error: function (e) {
+                        layer.msg('服务器异常，请重试', {icon: 2, shift: 6});
+                    }
+                });
+            }
+        });
+
+        return false;
+
+    });
+    //批量拒绝
+    var ids2=[];
+    $('#getAllSelectedId2').click(function(){
+        $("input[name='items']:checked").each(function(){
+            ids2.push($(this).attr("id"));
+        });
+        console.log("id长度"+ids2.length);
+        if(ids2.length == 0){
+            layer.msg('请选择商品', {icon: 2, shift: 6});
+            return;
+        }
+//        main
+        layer.msg("是否批量拒绝", {
+            time: 0 //不自动关闭
+            ,btn: ['确认', '取消']
+            ,yes: function(index){
+                layer.close(index);
+                $.ajax({
+                    url: "{:url('refunds/allstatus')}",
+                    type: "post",
+                    data: {
+                        id:ids,type:2
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        if (data.code === 1) {
+                            layer.msg(data.msg, {icon: 1, shift: 6});
+                            window.location.href = "{:url('refunds/index')}"
+                        } else {
+                            layer.msg(data.msg, {icon: 2, shift: 6});
+                        }
+                    },
+                    error: function (e) {
+                        layer.msg('服务器异常，请重试', {icon: 2, shift: 6});
+                    }
+                });
+            }
+        });
+        return false;
+
+    });
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#test5'
+            ,type: 'datetime'
+        });
+    });
+</script>
+
+</body>
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/table_data_tables.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:02 GMT -->
+</html>
+
+

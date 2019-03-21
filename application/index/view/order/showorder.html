@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/table_data_tables.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:01 GMT -->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单管理</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__INDEX__/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="__INDEX__/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <link href="__INDEX__/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <link href="__INDEX__/css/animate.min.css" rel="stylesheet">
+    <link href="__INDEX__/css/style.min862f.css?v=4.1" rel="stylesheet">
+    <link href="__INDEX__/css/style.min862f.css?v=4.1" rel="stylesheet">
+    <script src="__INDEX__/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__INDEX__/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="__INDEX__/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="__INDEX__/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="__INDEX__/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="__INDEX__/js/content.min.js?v=1.0.0"></script>
+    <script src="__INDEX__/js/plugins/layer/laydate/laydate.js"></script>
+    <script src="__INDEX__/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="__INDEX__/layui2/css/layui.css">
+    <script type="text/javascript" src="__INDEX__/layui2/layui.js"></script>
+</head>
+<style type="text/css">
+    .col-sm-2 {
+        width: 6.66666667%;
+    }
+    .input-group .form-control {
+        position: relative;
+        z-index: 2;
+        float: right;
+        width: 25%;
+        margin-bottom: 0;
+
+    }
+    .layui-elem-field legend {
+        margin-left: -9px;
+        padding: 0 10px;
+        font-size: 20px;
+        font-weight: 300;
+    }
+    .layui-btn-primary{
+        margin-left: -105px;
+    }
+    .layui-upload-img { width: 90px; height: 90px; margin: 0; }
+    .pic-more { width:100%; left; margin: 10px 0px 0px 0px;}
+    .pic-more li { width:90px; float: left; margin-right: 5px;}
+    .pic-more li .layui-input { display: initial; }
+    .pic-more li a { position: absolute; top: 0; display: block; }
+    .pic-more li a i { font-size: 24px; background-color: #008800; }
+    #slide-pc-priview .item_img img{ width: 90px; height: 90px;}
+    #slide-pc-priview li{position: relative;}
+    #slide-pc-priview li .operate{ color: #000; display: none;}
+    #slide-pc-priview li .toleft{ position: absolute;top: 40px; left: 1px; cursor:pointer;}
+    #slide-pc-priview li .toright{ position: absolute;top: 40px; right: 1px;cursor:pointer;}
+    #slide-pc-priview li .close{position: absolute;top: 5px; right: 5px;cursor:pointer;}
+    #slide-pc-priview li:hover .operate{ display: block;}
+    table{
+        text-align: center;
+    }
+    ul{
+        list-style: none;
+    }
+    ul li{
+        padding: 10px 10px;
+    }
+    .active span{
+        background-color: #1ab394 !important;
+        color: white !important;
+    }
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    订单管理 &nbsp;&nbsp;&nbsp;&nbsp;
+                    <!-- <button class="layui-btn " onclick="window.history.back(-1)">返回上一页</button> -->
+                </div>
+                <div class="ibox-content">
+                    <div class="input-group" style=" width: 100%;">
+                        <div style="float: left;width: 50px;height: 50px"><img src="{$detail['goods_image']}" style="width: 50px"></div>
+                        <div style="float: left">
+                            <ul>
+                                <li>{$detail['goods_name']}</li>
+                                <li>规格:{foreach name="detail['goods_specification']" item='v'}
+                                    {$v}
+                                    {/foreach}</li>
+                                <li>数量：{$detail['goods_count']}</li>
+                                <li>订单编号：{$orders['orders_num']}</li>
+                            </ul>
+                        </div>
+                        <div style="float: left">
+                            <ul>
+                                <li><label></label></li>
+                                <li>单价:￥{$detail['goods_price']}</li>
+                                <li>小计：￥{$detail['zmoneys']}</li>
+                                <li>优惠券：{eq name='orders.coupon_id' value="0"}无{else/}{$orders['coupon']}{/eq}</li>
+                            </ul>
+                        </div>
+                        <div style="float: left">
+                            <ul>
+                                <li><label></label></li>
+                                <li>单价:￥{$detail['goods_price']}</li>
+                                <li>小计：￥{$detail['real_pay']}</li>
+                                <li>实际支付金额：￥{$detail['real_pay']}</li>
+                            </ul>
+                        </div>
+                        <div style="float: left">
+                            <ul>
+                                <li><label></label></li>
+                                <li>积分:{$integral['own_integral']}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div >
+                        <h3>订单</h3>
+                    </div>
+                    <div class="ibox-title">
+                        <h4>订单信息</h4>
+                    </div>
+                    <div class="input-group" style=" width: 100%;">
+                        <div style="float: left;width: 50%">
+                            <ul>
+                                <li>买家付款时间：{if condition="$orders['pay_time'] > 0 "} {:date('Y-m-d H:i:s',$orders['pay_time'])}
+                                    {else /} 无
+                                    {/if}</li>
+                                <li>    付款方式:{eq name='orders.type' value="0"}余额{/eq}
+                                    {eq name='orders.type' value="1"}微信{/eq}
+                                </li>
+                                <li>    收货地址：{$orders['address']}</li>
+                                <li>    会员电话：{$users['telephone']}</li>
+                                <li>    买家留言：   {empty name="orders['remark']"}
+                                   无
+                                    {else /}
+                                    {$orders['remark']}
+                                    {/empty}</li>
+                            </ul>
+                        </div>
+                        <div style="float: left;width: 50%">
+                            <ul>
+                                <li>订单状态：
+                                    {if condition="($detail['orders_status'] == 0)"}
+                                    待付款
+                                    {elseif condition="($detail['orders_status'] == 1)"/}
+                                    待发货
+                                    {elseif condition="($detail['orders_status'] == 2)"/}
+                                    待收货
+                                    {elseif condition="($detail['orders_status'] == 4)"/}
+                                    交易取消
+                                    {else /}
+                                    交易成功
+                                    {/if}
+                                  <!--  {if condition="($orders['status'] == 0)"}
+                                    待付款
+                                    {elseif condition="($orders['status'] == 1)"/}
+                                    待发货
+                                    {elseif condition="($orders['status'] == 2)"/}
+                                    待收货
+                                    {elseif condition="($orders['status'] == 3)"/}
+                                    交易失败
+                                    {else /}
+                                    交易取消
+                                    {/if}-->
+                                </li>
+                                <li>  收货人: {$orders['name']}</li>
+                                <li>联系方式：{$orders['telephone']}</li>
+                                <li>  会员编号：{$users['user_num']}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin: 13px">
+                    <h4>佣金信息</h4>
+                </div>
+                    <div class="input-group" style=" width: 100%;">
+                        <div style="float: left;width: 50%">
+                            <ul>
+                                <li>总代：
+                                    {empty name="arr1"}
+                                    无
+                                    {else /}
+                                    {$arr1['gradename1']}
+                                    {$arr1['telephone1']}
+                                    分配<span style="color: red">￥{$arr1['money1']}</span>
+                                    {/empty}
+
+                                    </li>
+                                <li>一级总代：
+                                    {empty name="arr2"}
+                                    无
+                                    {else /}
+                                    {$arr2['gradename2']}
+                                    {$arr2['telephone2']}
+                                    分配<span style="color: red">￥{$arr2['money2']}</span>
+                                    {/empty}
+
+                                </li>
+                                <li>二级总代：
+                                    {empty name="arr3"}
+                                    无
+                                    {else /}
+                                    {$arr3['gradename3']}
+                                    {$arr3['telephone3']}
+                                    分配<span style="color: red">￥{$arr3['money3']}</span>
+                                    {/empty}
+                                    </li>
+
+                            </ul>
+                        </div>
+                        <div style="float: left;width: 50%">
+                            <ul>
+                            <!--    <li>一级总代：
+                                    {empty name="arr2"}
+                                    无
+                                    {else /}
+                                    {$arr2['gradename2']}
+                                    {$arr2['telephone2']}
+                                    分配￥{$arr2['money2']}
+                                    {/empty}
+
+                                    </li>-->
+                                <li>董事：
+                                    {empty name="arr4"}
+                                    无
+                                    {else /}
+                                    {$arr4['gradename4']}
+                                    {$arr4['telephone4']}
+                                    分配<span style="color: red">￥{$arr4['money4']}</span>
+                                    {/empty}
+
+                                    </li>
+                                <li>一级董事：
+                                    {empty name="arr5"}
+                                    无
+                                    {else /}
+                                    {$arr5['gradename5']}
+                                    {$arr5['telephone5']}
+                                    分配<span style="color: red">￥{$arr5['money5']}</span>
+                                    {/empty}
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div style="margin: 13px">
+                        <h4>订单时间</h4>
+                    </div>
+                    <div class="input-group" style=" width: 100%;">
+                        <div style="float: left;width: 50%">
+                            <ul>
+                                <li>创建时间：{:date('Y-m-d H:i:s',$orders['create_time'])}</li>
+                                <li>买家付款时间:{if condition="$orders['pay_time'] > 0 "} {:date('Y-m-d H:i:s',$orders['pay_time'])}
+                                    {else /} 无
+                                    {/if}</li>
+
+                            </ul>
+                        </div>
+                        <div style="float: left;width: 50%">
+                            <ul>
+                                <li>卖家发货时间：{if condition="$detail['shipments_time'] > 0 "}
+                                    {:date('Y-m-d H:i:s',$detail['shipments_time'])}
+                                    {else /} 无
+                                    {/if}
+                                </li>
+                                <li>确认收货时间:{if condition="$detail['accomplish_time'] > 0 "}
+                                    {:date('Y-m-d H:i:s',$detail['accomplish_time'])}
+                                    {else /} 无
+                                    {/if}
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div style="margin: 13px">
+                        <h4>评价</h4>
+                    </div>
+                    <div class="input-group" style=" width: 100%;">
+                        <table class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                            <tr style="text-align: center;">
+                                <th style="text-align: center;">评价信息</th>
+                                <th style="text-align: center;">操作</th>
+                            </tr>
+                            </thead>
+                            {foreach name="opinions" item='v1'}
+                            <tbody>
+                            <tr class="gradeX">
+                                <td><ul>
+                                    <li>用户：{$v1.nickname}</li>
+                                    <li>内容：{$v1.content}</li>
+                                    <li>
+                                        {foreach name="v1.images" item='vs'}
+                                        <img src="{$vs}" style="width: 50px" >
+                                        {/foreach}
+                                    </li>
+                                </ul></td>
+
+                                <td class="center">
+
+                                    <a class="btn btn-primary btn-rounded" style=" border-radius: 4px"   onclick="update_showorder(this)" data-status="2" data-id="{$v1.id}">修改</a>
+
+                                </td>
+                            </tr>
+                            </tbody>
+                            {/foreach}
+                        </table>
+
+
+                    </div>
+                    {$page}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+<script>
+    function update_showorder(update_showorder){
+        var id = $(update_showorder).attr('data-id');
+//        var status = $(update_slidedeliver).attr('data-status');
+//       alert(status)
+        layer.ready(function(){
+            layer.open({
+                type: 2,
+                title: '评论修改',
+                maxmin: true,
+                area: ['80%', '80%'],
+                content: '{:url('editopinion')}?id='+id,
+                cancel: function(){ //刷新网页
+                    //重新加载表格数据
+                    self.location='{:url('showorder')}';
+                }
+            });
+        });
+    }
+
+
+</script>
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/table_data_tables.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:02 GMT -->
+</html>
+
+

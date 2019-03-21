@@ -1,0 +1,13 @@
+公众号AppID：wx474dc15e39abdda7
+公众号AppSecret：61510531b4b31109c43e7e30da881b02
+
+
+
+小程序AppID：wx19f9b6be4310ebb1
+小程序AppSecret：ccd3ecb49812f58f894b04a31e47214a
+
+
+
+微信支付
+商户号：1521412721
+API密钥：caihongyixianggou111122223333444

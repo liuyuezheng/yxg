@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="format-detection" content="telephone=no" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <title>修改优惠券</title>
+
+    <meta name="keywords" content="jQuery省市区三级联动" />
+
+    <meta name="description" content="jQuery实现省、市、区三级联动的代码网上应该已经挺多了，今天群里一名成员投了篇关于省、市、区三级联动的实现代码，不同的一点是他将代码片段封装成了jQuery插件。" />
+
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__INDEX__/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="__INDEX__/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link rel="stylesheet" href="__INDEX__/cations/css/sku_style.css" />
+    <script src="__INDEX__/layui/assets/jquery-1.12.4.js"></script>
+    <!--<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>-->
+    <script type="text/javascript" src="__INDEX__/cations/js/customSku.js"></script>
+    <script type="text/javascript" src="__INDEX__/cations/plugins/layer/layer.js"></script>
+    <!-- Data Tables -->
+    <link href="__INDEX__/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="__INDEX__/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="__INDEX__/css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="__INDEX__/css/plugins/colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    <link href="__INDEX__/css/plugins/cropper/cropper.min.css" rel="stylesheet">
+    <link href="__INDEX__/css/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">
+    <link href="__INDEX__/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link href="__INDEX__/css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
+    <link href="__INDEX__/css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+    <link href="__INDEX__/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <link href="__INDEX__/css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
+    <link href="__INDEX__/css/animate.min.css" rel="stylesheet">
+
+    <link href="__INDEX__/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="__INDEX__/css/plugins/switchery/switchery.css" rel="stylesheet">
+    <link href="__INDEX__/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+    <link href="__INDEX__/css/style.min862f.css?v=4.1" rel="stylesheet">
+
+    <script type="text/javascript" charset="utf-8" src="__INDEX__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__INDEX__/ueditor/ueditor.all.min.js"></script>
+    <script src="__INDEX__/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="__INDEX__/js/content.min.js?v=1.0.0"></script>
+    <script src="__INDEX__/js/plugins/chosen/chosen.jquery.js"></script>
+    <script src="__INDEX__/js/plugins/jsKnob/jquery.knob.js"></script>
+    <script src="__INDEX__/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+    <script src="__INDEX__/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <script src="__INDEX__/js/plugins/prettyfile/bootstrap-prettyfile.js"></script>
+    <script src="__INDEX__/js/plugins/nouslider/jquery.nouislider.min.js"></script>
+    <script src="__INDEX__/js/plugins/switchery/switchery.js"></script>
+    <script src="__INDEX__/js/plugins/ionRangeSlider/ion.rangeSlider.min.js"></script>
+    <script src="__INDEX__/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="__INDEX__/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="__INDEX__/js/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <script src="__INDEX__/js/plugins/clockpicker/clockpicker.js"></script>
+    <script src="__INDEX__/js/plugins/cropper/cropper.min.js"></script>
+    <script src="__INDEX__/js/demo/form-advanced-demo.min.js"></script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+    <script src="__INDEX__/laydate/laydate.js"></script>
+    <link rel="stylesheet" type="text/css" href="__INDEX__/layui2/css/layui.css">
+    <script type="text/javascript" src="__INDEX__/layui2/layui.js"></script>
+    <script type="text/javascript" src="__INDEX__/layui/assets/data.js"></script>
+    <script type="text/javascript" src="__INDEX__/layui/assets/province.js"></script>
+</head>
+<style type="text/css">
+    .control-label{
+        display: inline-block;
+        width: 110px;
+        height:30px;
+
+    }
+    .col-sm-1{
+        margin-right: -10px;
+        width: 90%;
+        float: right;
+    }
+    .release_add {
+        width: 78px;
+        height: 78px;
+        display: flex;
+        flex-direction: column;
+        border: .02px solid #EBEBEB;
+        margin-left: 32px;
+    }
+    .release_add_img {
+        width: 75px;
+        height: 85px;
+        margin: 12px auto;
+    }
+
+    .release_add_txt {
+        text-align: center;
+        color: #BBBBBB;
+        font-size: 14px;
+    }
+
+    element.style {
+    }
+    .ibox {
+        clear: both;
+        margin-bottom: 25px;
+        margin-top: 0;
+        padding: 0;
+        padding-left: 50px;
+    }
+    .form-control, .single-line {
+        background-color: #FFF;
+        background-image: none;
+        border: 1px solid #e5e6e7;
+        border-radius: 1px;
+        color: inherit;
+        display: block;
+        padding: 6px 12px;
+        /* -webkit-transition: border-color .15s ease-in-out 0s,box-shadow .15s ease-in-out 0s; */
+        width: 100%;
+        font-size: 14px;
+        margin-top: -36px;
+    }
+    .form-control{
+        width: 45%;
+        margin-left: 30px;
+        margin-top: -35px;
+    }
+    .ishot{
+        margin-left: 30px;
+    }
+    .layui-elem-field legend {
+        margin-left: -9px;
+        padding: 0 10px;
+        font-size: 20px;
+        font-weight: 300;
+    }
+    .layui-upload-img { width: 90px; height: 90px; margin: 0; }
+    .pic-more { width:100%; left; margin: 10px 0px 0px 0px;}
+    .pic-more li { width:90px; float: left; margin-right: 5px;}
+    .pic-more li .layui-input { display: initial; }
+    .pic-more li a { position: absolute; top: 0; display: block; }
+    .pic-more li a i { font-size: 24px; background-color: #008800; }
+    #slide-pc-priview .item_img img{ width: 90px; height: 90px;}
+    #slide-pc-priview li{position: relative;}
+    #slide-pc-priview li .operate{ color: #000; display: none;}
+    #slide-pc-priview li .toleft{ position: absolute;top: 40px; left: 1px; cursor:pointer;}
+    #slide-pc-priview li .toright{ position: absolute;top: 40px; right: 1px;cursor:pointer;}
+    #slide-pc-priview li .close{position: absolute;top: 5px; right: 5px;cursor:pointer;}
+    #slide-pc-priview li:hover .operate{ display: block;}
+</style>
+<style>
+
+    *{ margin:0; padding:0;}
+
+    #box{width:540px; min-height:400px; background:#FF9}
+
+
+</style>
+<body>
+
+
+
+<div id="content-wrap">
+
+    <div id="content-left" class="demo">
+        <div style="margin-top: 22px;font-size: larger;font-weight:bolder;margin-left: 20px">
+            修改优惠券
+        </div>
+        <form action="" class="form-horizontal" name="form1">
+            <input type="hidden" value="{$data['id']}" name="pic" id="id_id">
+            <div class="ibox float-e-margins" style="margin-top: 40px;">
+
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" style="display: inline-block">
+                    <label class="col-sm-2 control-label">优惠券名称:</label>
+                    <input type="text"  class="form-control"  id="name" style="margin-left: 102px" placeholder="请输入描述"  value="{$data['name']}" >
+                </div>
+
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" style="display: inline-block">
+                    <label class="col-sm-2 control-label">满减金额:</label>
+
+                    <input type="text" id="limit_money" placeholder="请输入满减金额" oninput="value=value.replace(/[^\d]/g,'')"  class="form-control" style="margin-left: 102px" value="{$data['limit_money']}" >
+
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" style="display: inline-block">
+                    <label class="col-sm-2 control-label">满减条件:</label>
+
+                    <input type="text" id="limit_condition" placeholder="请输入满减条件" oninput="value=value.replace(/[^\d]/g,'')"  class="form-control" style="margin-left: 102px" value="{$data['limit_condition']}" >
+
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" style="display: inline-block">
+                    <label class="col-sm-2 control-label">优惠券类型:</label>
+
+                    <select  style="width: 40%;margin-left: 209px"  id="type" name="cate_id">
+                        {eq name="data.type" value='0'}
+                        <option value="0"  >新手优惠券</option>
+                        <option value="1" >赠送优惠券</option>
+                        {/eq}
+                        {eq name="data.type" value='1'}
+                        <option value="1" >赠送优惠券</option>
+                        <option value="0" >新手优惠券</option>
+                        {/eq}
+
+                    </select>
+
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" style="display: inline-block">
+                    <label class="col-sm-2 control-label">有效时间:</label>
+                    <input type="text" id="end_time" placeholder="请输入天数" oninput="value=value.replace(/[^\d]/g,'')"  class="form-control" style="margin-left: 102px" value="{$data['end_time']}" >
+
+                </div>
+            <!--    <div class="hr-line-dashed"></div>
+                <div class="form-group" style="display: inline-block">
+                    <label class="col-sm-2 control-label">发放数量:</label>
+                    <input type="text" id="num" placeholder="请输入" class="form-control" style="margin-left: 102px" value="{$data['num']}" >
+
+                </div>-->
+
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" style="display: inline-block">
+                    <label class="col-sm-2 control-label">是否发放:</label>
+                    {eq name="data.is_putaway" value='1'}
+                    <input id="chec"  type="checkbox" class="js-switch_3"  checked  />
+                    {/eq}
+                    {eq name="data.is_putaway" value='0'}
+                    <input id="chec"  type="checkbox" class="js-switch_3"  />
+                    {/eq}
+
+                    <!--<input id="chec"  type="checkbox" class="js-switch_3"  />-->
+
+                </div>
+                <script>
+                var isz=0;
+                //                    console.log($(".switchery"));
+                $("#chec").change(function () {
+                console.log($(this)[0].checked);
+                if($(this)[0].checked==true){
+                isz=1;
+                }else{
+                isz=0;
+                }
+                //                        alert(isz);
+                });
+
+                </script>
+
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-3" style="height:329px">
+                        <button class="btn btn-primary" style="width: 33%;height: 10%" onclick="edit_goodsinfo()" type="button">修改优惠券</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default" style="width: 20%;height: 10%" onclick="quxiao()">取消</button>
+                    </div>
+                </div>
+        </form>
+
+    </div>
+
+    <div id="contentt-right"></div>
+
+</div>
+<script>
+
+
+</script>
+<script type="text/javascript">
+    //修改优惠券
+    function edit_goodsinfo(){
+
+
+//        var arr = [];
+//        $.each($(".viewThumb img"),function(idnex, item){
+//            arr.push(item.src)
+//        })
+        var did=$("#id_id").val();
+        var name=$("#name").val();
+        var limit_money=$("#limit_money").val();
+        var limit_condition=$("#limit_condition").val();
+        var num=$("#num").val();
+        var end_time=$("#end_time").val();
+        var type=$("#type option:selected").val();
+        if(name == "" ){
+            layer.msg('请填写优惠券名称！', {icon: 2, shift: 6});
+        }else if(limit_money == ""){
+            layer.msg('满减金额！', {icon: 2, shift: 6});
+        }else if(limit_condition == ""){
+            layer.msg('请填写满减条件！', {icon: 2, shift: 6});
+        }else if(type == ""){
+            layer.msg('请选择优惠券类型！', {icon: 2, shift: 6});
+        }else if(end_time == ""){
+            layer.msg('请填写有效时间！', {icon: 2, shift: 6});
+        }else if(num == ""){
+            layer.msg('请填写发放数量！', {icon: 2, shift: 6});
+        }else if(limit_money<=limit_condition){
+            layer.msg('满减金额需小于满减条件！', {icon: 2, shift: 6});
+        } else{
+            $.ajax({
+                url: '{:url("coupons/edits")}',
+                type: "post",
+                data: {
+                    is_putaway:isz,
+                    name:name,
+                    limit_money:limit_money,
+                    limit_condition:limit_condition,
+                    num:num,
+                    end_time:end_time,
+                    type:type,
+                    id:did
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    if (data.code === 1) {
+                        layer.msg(data.msg, {icon: 1, shift: 6});
+                        window.parent.location.reload();
+                    } else {
+                        layer.msg(data.msg, {icon: 2, shift: 6});
+                    }
+                },
+                error: function (e) {
+                    layer.msg('服务器异常，请重试', {icon: 2, shift: 6});
+                }
+            });
+        }
+//       alert(goods_id);
+
+    }
+
+    //取消添加
+    function quxiao(){
+        window.parent.location.reload();
+    }
+
+
+    $('#test').diyUpload({
+
+        url:"{:url('goodsinfo/upload_image')}",
+
+        success:function( data ) {
+            console.log("111")
+            console.info( data );
+
+        },
+
+        error:function( err ) {
+
+            console.info( err );
+
+        }
+
+    });
+
+
+
+    $('#as').diyUpload({
+
+        url:"{:url('goodsinfo/upload_image')}",
+
+        success:function( data ) {
+            console.log("222")
+            console.info( data );
+
+        },
+
+        error:function( err ) {
+
+            console.info( err );
+
+        },
+
+        buttonText : '选择文件',
+
+        chunked:true,
+
+        // 分片大小
+
+        chunkSize:512 * 1024,
+
+        //最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
+
+        fileNumLimit:50,
+
+        fileSizeLimit:500000 * 1024,
+
+        fileSingleSizeLimit:50000 * 1024,
+
+        accept: {},
+
+    });
+
+</script>
+
+
+</body>
+
+</html>
+

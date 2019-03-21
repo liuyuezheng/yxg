@@ -1,0 +1,163 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:60:"F:\ayxg\public/../application/index\view\index\shiajian.html";i:1550215620;}*/ ?>
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/table_data_tables.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:01 GMT -->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单管理</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="/static/hplus/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="/static/hplus/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <script src="/static/hplus/js/jquery.min.js?v=2.1.4"></script>
+
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="/static/hplus/layui2/css/layui.css">
+    <script type="text/javascript" src="/static/hplus/layui2/layui.js"></script>
+</head>
+<style type="text/css">
+    .col-sm-2 {
+        width: 6.66666667%;
+    }
+    .input-group .form-control {
+        position: relative;
+        z-index: 2;
+        float: right;
+        width: 25%;
+        margin-bottom: 0;
+
+    }
+    .layui-elem-field legend {
+        margin-left: -9px;
+        padding: 0 10px;
+        font-size: 20px;
+        font-weight: 300;
+    }
+    .layui-btn-primary{
+        margin-left: -105px;
+    }
+    .layui-upload-img { width: 90px; height: 90px; margin: 0; }
+    .pic-more { width:100%; left; margin: 10px 0px 0px 0px;}
+    .pic-more li { width:90px; float: left; margin-right: 5px;}
+    .pic-more li .layui-input { display: initial; }
+    .pic-more li a { position: absolute; top: 0; display: block; }
+    .pic-more li a i { font-size: 24px; background-color: #008800; }
+    #slide-pc-priview .item_img img{ width: 90px; height: 90px;}
+    #slide-pc-priview li{position: relative;}
+    #slide-pc-priview li .operate{ color: #000; display: none;}
+    #slide-pc-priview li .toleft{ position: absolute;top: 40px; left: 1px; cursor:pointer;}
+    #slide-pc-priview li .toright{ position: absolute;top: 40px; right: 1px;cursor:pointer;}
+    #slide-pc-priview li .close{position: absolute;top: 5px; right: 5px;cursor:pointer;}
+    #slide-pc-priview li:hover .operate{ display: block;}
+    table{
+        text-align: center;
+    }
+    ul{
+        list-style: none;
+    }
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    订单信息
+                </div>
+                <div class="ibox-content">
+                    <!-- <a data-toggle="modal" class="btn btn-primary" onclick="add_goodsinfo()"  href="form_basic.html#modal-form">添加商品信息</a>
+                     <a data-toggle="modal" class="btn btn-w-m btn-danger" id="getAllSelectedId"  href="form_basic.html#modal-form">批量昨日爆款</a>
+                     <a data-toggle="modal" class="btn btn-w-m btn-danger" id="getAllSelectedId2"  href="form_basic.html#modal-form">批量今日主推</a>
+ -->
+                    <div class="input-group" style=" width: 100%;">
+                        <select  style="width: 19%;margin-left: 16px"  id="order_type" name="order_type">
+                            <option value="" >全部</option>
+                            <option value="7" >待付款</option>
+                            <option value="1" >待发货</option>
+                            <option value="2" >待收货</option>
+                            <option value="3" >交易完成</option>
+                            <option value="4" >交易关闭</option>
+                            <option value="5" >已付款删除</option>
+                            <option value="6" >未付款删除</option>
+                        </select>
+                        <input type="text" style="width: 25%;margin-left: 16px" id="nameorder"  placeholder="手机号/收货人/订单编号/快递单号">
+                        <div class="layui-input-inline" style="margin-left:16px;">
+                            <input type="text" class="layui-input" style="height: 23px;width: 500px;" id="test5" placeholder="下单时间">
+                        </div>
+
+                        <button type="button" onclick="search()" style=" margin-left: 14px; " class="btn btn-sm btn-primary">
+                            搜索
+                        </button>
+                        <a data-toggle="modal" class="btn btn-w-m btn-danger" onclick="member_add(this)"  style="margin-left: 10px" >导入</a>
+                        <a data-toggle="modal" class="btn btn-w-m btn-danger"  style="margin-left: 10px"  href="<?php echo url('excel'); ?>">导出</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    //关键字搜索
+    function search(){
+        var pay_type = $("#pay_type option:selected").val();
+//        var order_status = $("#order_status option:selected").val();
+//        var time_type = $("#time_type option:selected").val();
+        var time = $("#test5").val();
+        var nameorder = $("#nameorder").val();
+//        window.location.href = "<?php echo url('monitor/index'); ?>?type="+pay_type+"&time="+time+"&nameorder="+nameorder;
+        console.log(time)
+        $.ajax({
+            url: "<?php echo url('index/ss'); ?>",
+            type: "get",
+            data: {
+                time:time
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+
+            },
+            error: function (e) {
+                layer.msg('服务器异常，请重试', {icon: 2, shift: 6});
+            }
+        });
+//        window.location.href = "<?php echo url('order/index'); ?>?order_type="+order_type+"&time="+time+"&nameorder="+nameorder;
+    }
+
+
+
+
+    //批量同意
+
+
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#test5'
+            ,type: 'datetime'
+            ,range: '~'
+
+        });
+    });
+</script>
+
+</body>
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/table_data_tables.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:02 GMT -->
+</html>
+
+
